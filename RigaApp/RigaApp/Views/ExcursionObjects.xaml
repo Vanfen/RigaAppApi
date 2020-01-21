@@ -5,32 +5,34 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:RigaApp"
              mc:Ignorable="d"
+             Title="Ekskursijas objekti"
              x:Class="RigaApp.Views.ExcursionObjects">
 
 
     <StackLayout>
-        <Label>Ekskursijas objektu saraksts</Label>
         
         <ListView x:Name="ObjectList" HasUnevenRows="True">
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>
-                    <StackLayout>
-                        <StackLayout Orientation="Horizontal">
+                        <StackLayout BackgroundColor="#9BFFDA">
+                        <Image x:Name="ObjectImage" Source="{Binding ImageName}"></Image>
+                            <StackLayout Margin="5, 0, 5, 0" Orientation="Horizontal">
                             <Label Text="{Binding ID}"></Label>
                             <Label Text="{Binding Name}"></Label>
                         </StackLayout>
-                        <StackLayout Orientation="Horizontal">
-                                <Label Text="{Binding Address}"></Label>
+                            <StackLayout Margin="5, 0, 5, 0" Orientation="Horizontal">
+                            <Label Text="{Binding Address}"></Label>
                         </StackLayout>
-                        <StackLayout Orientation="Horizontal">
-                            <Label Text="{Binding Info}"></Label>
-                        </StackLayout>
-                        <StackLayout Orientation="Horizontal">
+                            <StackLayout Margin="5, 0, 5, 0" Orientation="Horizontal">
+                                <Label Text="{Binding Info, StringFormat='{0} ...'}" MaxLines="3"></Label>
+                            </StackLayout>
+                            <StackLayout Margin="5, 0, 5, 0" Orientation="Horizontal">
                             <Label Text="{Binding Lat, StringFormat='Latitude: {0}' }"></Label>
                             <Label Text="{Binding Lon, StringFormat='Longtitude: {0}'}"></Label>
                         </StackLayout>
-                    </StackLayout>
+                            <BoxView Margin="0, 5, 0, 5" HeightRequest="2" BackgroundColor="Black" HorizontalOptions="FillAndExpand" />
+                        </StackLayout>
                 </ViewCell>
             </DataTemplate>
         </ListView.ItemTemplate>

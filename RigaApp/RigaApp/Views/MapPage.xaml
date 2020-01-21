@@ -9,18 +9,21 @@
              x:Class="RigaApp.Views.MapPage">
     <ContentPage.Content>
         <StackLayout>
-            <StackLayout>
+            <StackLayout x:Name="InfoBlock" Orientation="Vertical" HeightRequest="130">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="120" />
+                        <RowDefinition />
                     </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="auto" />
-                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="7*" />
+                        <ColumnDefinition Width="3*" />
                     </Grid.ColumnDefinitions>
-                    <Label x:Name="ObjectInfo" Grid.Row="0" Grid.Column="0">TEST text to MAP!</Label>
-                    <Image x:Name="ObjectImage" Grid.Row="0" Grid.Column="1"></Image>
+                    <ScrollView>
+                    <Label Margin="5" MaxLines="2" x:Name="ObjectInfo" Grid.Row="0" Grid.Column="0">Izvēlieties objektu lai apskatīt informāciju par to.</Label>
+                    </ScrollView>
+                    <Image x:Name="ObjectImage" MinimumWidthRequest="1000" HorizontalOptions="End" Grid.Row="0" Grid.Column="1"></Image>
                 </Grid>
+                
                 <!--<local:CustomMap x:Name="customMap" MapType="Street" />-->
             </StackLayout>
             <StackLayout>

@@ -34,10 +34,25 @@ namespace RigaApp.Views
             MainMap.IsShowingUser = true;
             //customMap.IsShowingUser = true;
 
+            /*MainMap.Pins.Add(new Pin
+            {
+                Position = position,
+                Type = PinType.Generic,
+                Label = "test",
+                Address = "Address",
+            });*/
+
             _ = PopulateByPins(MainMap);
             //_ = PopulateByPins(customMap);
 
-
+            var expanded = false;
+            var tapGestureRecognizer = new TapGestureRecognizer();
+            tapGestureRecognizer.Tapped += (s, e) => {
+                ExpandStack(expanded);
+                expanded = !expanded;
+            };
+            InfoBlock.GestureRecognizers.Add(tapGestureRecognizer);
+            ObjectInfo.GestureRecognizers.Add(tapGestureRecognizer);
 
             //_ = PopulateByPins(map);
             //map.Pins.Add(new Pin());
@@ -45,42 +60,59 @@ namespace RigaApp.Views
             //Content = map;
         }
 
+        private void ExpandStack(bool expanded)
+        {
+            if (expanded) {
+                InfoBlock.HeightRequest = 130;
+                ObjectInfo.MaxLines = 2;
+            } else
+            {
+                InfoBlock.HeightRequest = 1000;
+                ObjectInfo.MaxLines = 100;
+            }
+        }
+
         private async Task PopulateByPins(Map map)
         {
             var pins = new ObjectsViewModel();
             ObservableCollection<Place> pinsList = await pins.Load_Places();
-            
+
+            ObjectInfo.Text = pinsList.Count().ToString();
+
             foreach (Place place in pinsList)
             {
+                ObjectInfo.Text += "foreach works";
                 var pos = new Position(Convert.ToDouble(place.Lat), Convert.ToDouble(place.Lon));
+                ObjectInfo.Text += pos;
                 var pin = new Pin
                 {
                     Position = pos,
-                    Type = PinType.Place,
+                    Type = PinType.Generic,
                     Label = place.Info,
                     Address = place.Address,
                 };
-                /*CustomPin pin = new CustomPin
-                {
-                    Type = PinType.Place,
-                    Position = pos,
-                    Label = place.Info,
-                    Address = place.Address,
-                    Name = "Xamarin"
-                };*/
+                ObjectInfo.Text += pin.Address;
+                ObjectInfo.Text += pin.Label;
+                ObjectInfo.Text += pin.Position;
+                //ObjectInfo.Text += place.Address;
                 map.Pins.Add(pin);
-                //customMap.CustomPins = new List<CustomPin> { pin };
-                //customMap.Pins.Add(pin);
-                string ImageName = place.ImageName;
-                pin.MarkerClicked += (s, args) =>
+                map.Pins.Add(new Pin
                 {
-                    Fill_Info(pos, ImageName);
-                    //args.HideInfoWindow = true;
-                    string pinName = ((Pin)s).Label;
-                    
-                    ObjectInfo.Text = pinName;
-                    //await DisplayAlert("Pin Clicked", $"{pinName} was clicked.", "Ok");
-                };//Display_Info(pin.Label);
+                    Position = pos,
+                    Type = PinType.Generic,
+                    Label = "test",
+                    Address = "Address",
+                });
+                //string ImageName = place.ImageName;
+                //pin.MarkerClicked += (s, args) =>
+                //{
+                //    Fill_Info(pos, ImageName);
+                //args.HideInfoWindow = true;
+                //    string pinName = ((Pin)s).Label;
+
+                //    ObjectInfo.Text = pinName;
+                //await DisplayAlert("Pin Clicked", $"{pinName} was clicked.", "Ok");
+                //};//Display_Info(pin.Label);
             }
         }
 
@@ -100,7 +132,7 @@ namespace RigaApp.Views
 
             //ObjectInfo.Text += curLat;
             //ObjectInfo.Text += curLon;
-            ObjectInfo.Text += "Image Name - " + ImageName;
+            //ObjectInfo.Text += "Image Name - " + ImageName;
             ObjectImage.Source = ImageName;
             
 
