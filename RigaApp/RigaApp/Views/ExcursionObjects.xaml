@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:RigaApp"
+             mc:Ignorable="d"
+             x:Class="RigaApp.Views.ExcursionObjects">
+
+
+    <StackLayout>
+        <Label>Ekskursijas objektu saraksts</Label>
+        
+        <ListView x:Name="ObjectList" HasUnevenRows="True">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="{Binding ID}"></Label>
+                            <Label Text="{Binding Name}"></Label>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                                <Label Text="{Binding Address}"></Label>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="{Binding Info}"></Label>
+                        </StackLayout>
+                        <StackLayout Orientation="Horizontal">
+                            <Label Text="{Binding Lat, StringFormat='Latitude: {0}' }"></Label>
+                            <Label Text="{Binding Lon, StringFormat='Longtitude: {0}'}"></Label>
+                        </StackLayout>
+                    </StackLayout>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+        </ListView>
+        <Button Clicked="Open_Maps" Text="Go to Map"/>
+    </StackLayout>
+</ContentPage>

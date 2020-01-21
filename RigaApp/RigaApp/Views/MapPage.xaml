@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:maps="clr-namespace:Xamarin.Forms.Maps;assembly=Xamarin.Forms.Maps"
+             xmlns:local="clr-namespace:RigaApp.Models"
+             mc:Ignorable="d"
+             x:Class="RigaApp.Views.MapPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="120" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto" />
+                        <ColumnDefinition Width="auto" />
+                    </Grid.ColumnDefinitions>
+                    <Label x:Name="ObjectInfo" Grid.Row="0" Grid.Column="0">TEST text to MAP!</Label>
+                    <Image x:Name="ObjectImage" Grid.Row="0" Grid.Column="1"></Image>
+                </Grid>
+                <!--<local:CustomMap x:Name="customMap" MapType="Street" />-->
+            </StackLayout>
+            <StackLayout>
+                <Grid HeightRequest="1400">
+                    <maps:Map x:Name="MainMap" />
+                </Grid>
+                
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

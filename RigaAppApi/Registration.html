@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <link href="Content/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body style="padding-top:20px">
+    <div class="col-md-10 col-md-offset-1">
+        <form action="https://rigaappapi20191216120747.azurewebsites.net/api/user/Register" method="post">
+            username: <input type="text" name="username" value="test" /><br />
+            password: <input type="password" name="password" value="test" /><br />
+            email: <input type="email" name="email" value="test@test.com" /><br />
+            <input type="submit" value="Register" />
+        </form>
+
+        <form action="https://rigaappapi20191216120747.azurewebsites.net/api/user/Login" method="post">
+            username: <input type="text" name="username" value="test" /><br />
+            password: <input type="password" name="password" value="test" /><br />
+            <input type="submit" value="Login" />
+        </form>
+
+    </div>
+
+</body>
+</html>
